@@ -3,28 +3,30 @@ const padrePreguntas = document.getElementById("preguntasPadre");
 const hijoPreguntas = document.getElementById("preguntas");
 const remvPreguntas = padrePreguntas.removeChild(hijoPreguntas);
 
+const nicknameJugador = document.getElementById("nickname").value;
+const regionJugador = document.getElementById("region").value;
+
 // Registrar el jugador 
-function registro() {
+const botonRegistro = document.getElementById("botonRegistro");
 
+botonRegistro.addEventListener("click", (e) => {
+    e.preventDefault();
     // Se obtienen los valores de los inputs
-    var nicknameJugador = document.getElementById("nickname").value;
-    var regionJugador = document.getElementById("region").value;
+    let nickJugador = document.getElementById("nickname").value;
+    let region = document.getElementById("region").value;
 
-    if (nicknameJugador === "" || regionJugador === "seleccionar") {
+    function jugador(nickname, region) {
+        this.nickname = nickname;
+        this.region = region;
+    }
+    // Se crea el objeto jugador con los datos ingresados.
+    //var nuevoJugador = new jugador(nickJugador, region);
+    //console.log(nuevoJugador);
+
+    if (nickJugador === "" || region === "seleccionar") {
         alert("Debes completar todos los campos");
     } else {
-        // Se crea el constructor que guardará los datos del jugador.
-        function jugador(nickname, region) {
-            this.nickname = nickname;
-            this.region = region;
-        }
-        
-
-        // Se crea el objeto jugador con los datos ingresados.
-        var nuevoJugador = new jugador(nicknameJugador, regionJugador);
-        console.log(nuevoJugador);
-
-        alert("Bienvenido " + nuevoJugador.nickname + " el registro ha sido exitoso, ahora puedes jugar!");
+        alert("Bienvenido " + nickJugador + " el registro ha sido exitoso, ahora puedes jugar!");
 
         // Se elimina el formulario de registro.
         const us = document.getElementById("usuarioPadre");
@@ -36,11 +38,12 @@ function registro() {
         // Se ejecuta la función pregunta para que se muestre una pregunta aleatoria, se porporciona como parametro
         // el grupo de preguntas del nivel 1, ya que siempre se inicia en el nivel 1.
         pregunta(preguntasNivel1);
-        
     }
-}
 
-// Preguntas y respuestas
+    return jugadorInscrito = new jugador(nickJugador, region);
+})
+
+// Preguntas y respuestas de cada nivel:
 
 const preguntasNivel1 = [
     {
@@ -323,7 +326,6 @@ function pregunta(nivelPreguntas) {
     const opcionC = preguntaSeleccionada.respuestas.c;
     const opcionD = preguntaSeleccionada.respuestas.d;
     
-    
     const mostrarPregunta = document.getElementById("pregunta");
     const mostrarOpcionA = document.getElementById("opcionA");
     const mostrarOpcionB = document.getElementById("opcionB");
@@ -336,13 +338,29 @@ function pregunta(nivelPreguntas) {
     mostrarOpcionC.innerHTML = opcionC;
     mostrarOpcionD.innerHTML = opcionD;
     
-
     return respuestaCorrecta = preguntaSeleccionada.respuestaCorrecta;
 }
 
+
+function datosJugador(nicknameJugador, regionJugador, rp, nivel) {
+    // Creando el objeto jugador
+
+    // Se crea el constructor que guardará los datos del jugador.
+    function jugador(nickname, region, riotPoints, nivel) {
+        this.nickname = nickname;
+        this.region = region;
+        this.riotPoints = riotPoints;
+        this.nivel = nivel;
+    }
+
+    // Se crea el objeto jugador con los datos ingresados.
+    return nuevoJugador = new jugador(nicknameJugador, regionJugador, rp, nivel);
+}
+
+
 // El valor del contador nos indica el nivel en el que está el jugador, con el fin de seleccionar una pregunta de acuerdo al nivel.
 // La variable "rp" guardara el acomulado del premio segun el nivel.
-var contador = 2;
+var contador = 0;
 const premios = {
     nivel1: 500,
     nivel2: 1000,
@@ -353,73 +371,68 @@ const premios = {
 var rp = 0; // Acomulado de premio
 
 
-
 function respuesta() {
     console.log(contador);
     const respuesta = document.querySelector('input[name="pregunta1"]:checked');
     const nivel = document.getElementById("nivel");  // Imprime el nivel en el HTML
-
+    
     if (respuesta === null) {
         alert("Debes seleccionar una respuesta");
-    } else if (respuesta.value === respuestaCorrecta && contador === 2) {
-        console.log("Correcto");
-        //rp = 500;
+    } else if (respuesta.value === respuestaCorrecta && contador === 0) {
         rp += premios.nivel1;
         alert("Respuesta correcta!!!, pasaste a el nivel 2 🚀, tienes "  + rp + " Riot Points.");
         pregunta(preguntasNivel2);
         nivel.innerText = "Nivel 2";
-        return contador = 3, rp;
-
-    } else if (respuesta.value === respuestaCorrecta && contador === 3) {
-        console.log("Correcto");
-        //rp = 1000;
+        return contador = 1, rp;
+    
+    } else if (respuesta.value === respuestaCorrecta && contador === 1) {
         rp += premios.nivel2;
         alert("Respuesta correcta!!!, pasaste a el nivel 3 🚀, tienes " + rp + " Riot Points.");
         pregunta(preguntasNivel3);
         nivel.innerText = "Nivel 3";
-        return contador = 4, rp;
-
-    } else if (respuesta.value === respuestaCorrecta && contador === 4) {
-        console.log("Correcto");
-        //rp = 2000;
+        return contador = 2, rp;
+    
+    } else if (respuesta.value === respuestaCorrecta && contador === 2) {
         rp += premios.nivel3;
         alert("Respuesta correcta!!!, pasaste a el nivel 4 🚀, tienes " + rp + " Riot Points.");
         pregunta(preguntasNivel4);
         nivel.innerText = "Nivel 4";
-        return contador = 5;
-
-    } else if (respuesta.value === respuestaCorrecta && contador === 5) {
-        console.log("Correcto");
-        //rp = 4000;
+        return contador = 3, rp;
+    
+    } else if (respuesta.value === respuestaCorrecta && contador === 3) {
         rp += premios.nivel4;
         alert("Respuesta correcta!!!, pasaste a el ultimo nivel 🚀, tienes " + rp + " Riot Points.");
         pregunta(preguntasNivel5);
         nivel.innerText = "Nivel 5";
-        return contador = 6;
-
-    } else if (respuesta.value === respuestaCorrecta && contador === 6) {
-        console.log("Correcto");
-        //rp = 8000;
+        return contador = 4, rp;
+    
+    } else if (respuesta.value === respuestaCorrecta && contador === 4) {
         rp += premios.nivel5;
-        alert("Respuesta correcta!!!, ganaste el juego 🎉✨, tienes un acomulado de " + rp + " Riot Points.");
-
+        alert("Respuesta correcta!!!, ganaste el juego 🎉✨, tienes un acomulado de " + rp + " Riot Points, pronto serán cargados a tu cuenta.");
+        const nivel = 5;
+        datosJugador(jugadorInscrito.nickname, jugadorInscrito.region, rp, nivel);
+        location.href = "../index.html";
+    
     } else {
-        console.log("Incorrecto");
         alert("Respuesta incorrecta, perdiste el juego 😞");
+        rp = 0;
+        datosJugador(jugadorInscrito.nickname, jugadorInscrito.region, rp, contador);
+        location.href = "../index.html";
     }
 }
+
 
 function retirarse() {
     if (rp <= 0) {
         alert("Te retiraste del juego sin ganar nada 😔" );
+        const nivel = 0;
+        datosJugador(jugadorInscrito.nickname, jugadorInscrito.region, rp, nivel);
         location.href = "../index.html";
     } else {
         alert("Te retiraste del juego ganando " + rp + " Riot Points 🎉✨");
+        datosJugador(jugadorInscrito.nickname, jugadorInscrito.region, rp, contador);
         location.href = "../index.html";
     }
 }
 
 
-//setInterval(() => {
-//    console.log("Tu rp es: "+rp);
-//},2500);

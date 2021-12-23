@@ -9,6 +9,40 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.contImag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagen {
+    width: 80%;
+    height: 80%;
+}
+
+.reglas {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    margin-left: 8%;
+    margin-right: 8%;
+    text-align: justify;
+}
+
+.medio {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.botonComenzar {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .usuario {
@@ -28,7 +62,7 @@ body {
     align-items: center;
 }
 
-#btnRetirarse, #btnResponder {
+#botonRetirarse, #botonRespuesta {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,4 +70,6 @@ body {
     width: 50%;
     
 }
+
+
 
