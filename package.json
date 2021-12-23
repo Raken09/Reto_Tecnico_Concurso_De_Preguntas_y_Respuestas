@@ -1,0 +1,19 @@
+{
+  "name": "reto_tecnico_concurso_de_preguntas_y_respuestas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rhaegar09/Reto_Tecnico_Concurso_De_Preguntas_y_Respuestas.git"
+  },
+  "author": "Edward Reina",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rhaegar09/Reto_Tecnico_Concurso_De_Preguntas_y_Respuestas/issues"
+  },
+  "homepage": "https://github.com/Rhaegar09/Reto_Tecnico_Concurso_De_Preguntas_y_Respuestas#readme"
+}

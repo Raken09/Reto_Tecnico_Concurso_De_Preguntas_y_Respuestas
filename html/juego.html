@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/index.css">
+    <title>Concurso de preguntas y respuestas</title>
+</head>
+<body>
+    <div class="titulo">
+        <h1>¿Que tanto sabes de League of Legends?</h1>
+    </div>
+    
+    <div id="usuarioPadre">
+        <form id="usuario" class="usuario">
+            <h3>Antes de iniciar el juego, debes registrarte,</h3>
+            <h3>ingresa tu nickname y región:</h3>
+            <div class="form-group">
+                <label for="nickname">Nickname:</label>
+                <input type="text" class="form-control" id="nickname" aria-describedby="emailHelp" placeholder="Ingresa tu nikname">
+            </div>
+            <div class="form-group">
+                <label for="region">Selecciona tu región:</label>
+                <select name="region" id="region" class="form-control" aria-describedby="emailHelp">
+                    <option value="seleccionar">Seleccionar</option>
+                    <option value="LAN">LAN (Lationamérica norte)</option>
+                    <option value="LAS">LAS (Latinoamérica sur)</option>
+                </select>
+            </div>
+            
+            <button type="reset" id="boton" class="btn btn-primary" onclick="registro()">Aceptar</button>
+        </form>
+    </div>
+
+    <section id="preguntasPadre">
+        <div class="preguntas" id="preguntas">
+            <h2 id="nivel">Nivel 1</h2>
+            <div class="pregunta">
+                <h3 id="pregunta"></h3>
+                <div class="respuestas">
+                    <div class="respuesta">
+                        <input type="radio" name="pregunta1" value="a">
+                        <label id="opcionA"></label>
+                    </div>
+                    <div class="respuesta">
+                        <input type="radio" name="pregunta1" value="b">
+                        <label id="opcionB"></label>
+                    </div>
+                    <div class="respuesta">
+                        <input type="radio" name="pregunta1" value="c">
+                        <label id="opcionC"></label>
+                    </div>
+                    <div class="respuesta">
+                        <input type="radio" name="pregunta1" value="d">
+                        <label id="opcionD"></label>
+                    </div>
+                </div>
+            </div>
+            <button type="reset" id="btnResponder" class="btn btn-primary" onclick="respuesta()">Responder</button>
+            <button type="reset" id="btnRetirarse" class="btn btn-primary" onclick="retirarse()">Retirarse</button>
+        </div>
+    </section>
+    
+
+    <script src="../js/juego.js"></script>
+</body>
+</html>
